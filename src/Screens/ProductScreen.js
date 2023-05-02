@@ -1,11 +1,14 @@
-import {FlatList, Image, StyleSheet, Pressable} from 'react-native';
+import {FlatList, Image, StyleSheet, Pressable, Text} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import {productsSlice} from '../store/productsSlice';
+import { Heart } from 'react-native-feather';
 
 const ProductScreen = ({navigation}) => {
   
   const products = useSelector(state => state.products.products);
   const dispatch = useDispatch();
+
+  const favourite = () => {}
 
   return (
     <FlatList
@@ -26,6 +29,9 @@ const ProductScreen = ({navigation}) => {
             }}
             style={styles.image}
           />
+          <Pressable onPress={favourite} style={styles.heartIcon}>
+            <Heart color={"black"} />
+          </Pressable>
         </Pressable>
       )}
       numColumns={2}
@@ -43,4 +49,9 @@ const styles = StyleSheet.create({
     width: '50%',
     padding: 1,
   },
+  heartIcon: {
+    position: 'absolute',
+    bottom: 10,
+    right: 10
+  }
 });
